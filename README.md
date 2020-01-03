@@ -19,5 +19,5 @@ Delete functionality is accessed through the all files page itself and the user 
 
 ## Encryption and REST 
 The encryption used is Fernet from djnago-cryptography package. This encryption in the following images has been shown through the Django rest framework api. An example of uploading a file via POST and viewign all the files via GET method is also shown. 
-![](temp/restApi.png)
-![](temp/thirdRestApi.png)
+![](temp/thirdApi.png)
+![](temp/thirdAddedApi.png)
