@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h4> Update </h4>
+    <form method="post" enctype="multipart/form-data" class="col s12">
+        {% csrf_token %}
+        {{ form }}
+        <div class="container-contact100-form-btn" style="margin-top:0.5cm;">
+        <button class="contact100-form-btn" type="submit">
+            <span>
+                Update file
+            </span>
+	    </button>
+    </div>
+    </form>
+{% endblock %}

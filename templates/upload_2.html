@@ -1,0 +1,16 @@
+{% extends 'index.html'%}
+{% block content %}
+<h4> Upload </h4>
+<form action="/uploadFile" method="post" enctype="multipart/form-data"  >
+{% csrf_token %}
+{{ form }}
+<div class="container-contact100-form-btn" style="margin-top:0.5cm;">
+        <button class="contact100-form-btn" type="submit">
+            <span>
+                Upload file
+            </span>
+	    </button>
+    </div>
+</form>
+
+{% endblock %}

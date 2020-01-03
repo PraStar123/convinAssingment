@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+<form class="contact100-form validate-form" method="post" action="uploadFile" enctype="multipart/form-data">
+				{% csrf_token %}
+				<span class="contact100-form-title">
+					Upload File
+				</span>
+
+				<label class="label-input100" for="file-name">File name: </label>
+				<div class="wrap-input100 rs1 validate-input">
+					<input id="first-name" class="input100" type="text" name="file-name" placeholder="File name">
+					<span class="focus-input100"></span>
+				</div>
+
+				<label class="label-input100" for="file-path">File path: </label>
+                <div class="rs1 validate-input">
+					<input class="input100" type="file" name="file-path" >
+					<span class="focus-input100"></span>
+                </div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn" type="submit">
+						<span>
+							Submit
+							<i class="zmdi zmdi-arrow-right m-l-8"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+{% endblock %}
