@@ -27,18 +27,3 @@ class FileModel(models.Model):
         self.fileName = None
         super().delete(*args, **kwargs)
 
-# For the 
-''''@receiver(post_save, sender=FileModel)
-def keep_track_save(sender, instance, created, **kwargs):
-    if created:
-        current_instance = FileModel.objects.get(pk=instance.id)
-        with open(os.path.join(settings.BASE_DIR, f"media/{current_instance.filePath}"), 'rb') as f:
-            contents = f.read()
-            key = Fernet.generate_key()
-            fernet = Fernet(key)
-            encrypted = fernet.encrypt(contents)            
-            current_instance.encrypted_val = encrypted.decode('ascii')
-            current_instance.save()
-
-
-post_save.connect(keep_track_save, sender=FileModel)'''
