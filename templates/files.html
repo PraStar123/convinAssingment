@@ -32,7 +32,7 @@
         {% for file in files%}  
         <tr class="row100 head">
             <td class="cell100 column2">{{ file.fileName }}</td>
-            <td class="cell100 column5"><a href="{{ file.filePath.url }}" target="_blank"> Download </a> </td>
+            <td class="cell100 column5"><a href="{% url 'downloadFile' file.pk %}" > Download </a> </td>
             <td class="cell100 column3"><a href="{% url 'updateFile' file.pk %}">Update</a></td>
             <td class="cell100 column4"><a href="{% url 'deleteFile' file.pk %}">Delete</a></td>
         </tr>
