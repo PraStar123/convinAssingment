@@ -18,7 +18,8 @@ class FileModel(models.Model):
     fileName = models.CharField(max_length=256)
     filePath = models.FileField(upload_to='files')
     tracker = FieldTracker()
-
+    encryption = models.CharField(max_length=1024,blank=True)
+    
     def __unicode__(self):
         return self.fileName
     
@@ -26,4 +27,20 @@ class FileModel(models.Model):
         self.filePath.delete()
         self.fileName = None
         super().delete(*args, **kwargs)
+
+# Encryption using Fernet keys
+@receiver(post_save, sender=FileModel)
+def trackCreated(sender, instance, created, **kwargs):
+    if created:
+        current = FileModel.objects.get(pk=instance.id)
+        with open(os.path.join(settings.BASE_DIR, f"media/{current.filePath}"), 'rb') as f:
+            contents = f.read()
+            key = Fernet.generate_key()
+            fernet = Fernet(key)
+            encrypted = fernet.encrypt(contents)            
+            current.encryption = encrypted.decode('ascii')
+            current.save()
+
+
+post_save.connect(trackCreated, sender=FileModel)
 

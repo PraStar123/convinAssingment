@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect
 from .models import FileModel
 from .forms import FileForm, FileUpdateForm
 from django.contrib import messages
+from .serializers import FileSerializer, OperationSerializer
+from rest_framework.response import Response
+from rest_framework.parsers import FileUploadParser
+from rest_framework.views import APIView
+from rest_framework import generics, status 
+from rest_framework import viewsets
+
 
 # Create your views here.
 
@@ -58,6 +65,14 @@ def deleteFile(request, pk):
         messages.info(request, f"'{file.fileName}' has been deleted")
         file.delete()
     return redirect('files')
+
+# For uploading file via REST api
+class FileViewSet(viewsets.ModelViewSet):
+    queryset = FileModel.objects.all()
+    serializer_class = FileSerializer
+   
+
+
 
 
 
